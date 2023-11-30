@@ -1,6 +1,6 @@
 #####testing whether PSF was different from zero(Supplementary Table 1) 
 library(metafor)
-data<-read_excel("Submitted data.xlsx", sheet = "PSF-metafor-variance",col_names = TRUE)
+data<-read_excel("EmpirialData.xlsx", sheet = "PSF-metafor-variance",col_names = TRUE)
 data1<-data[which(data$Family=='composite-composite'),]
 data2<-data[which(data$Family=='composite-grass'),]
 data3<-data[which(data$Family=='composite-legume'),]
@@ -56,7 +56,7 @@ simpleanova5
 simpleanova6
 
 ####correlations between microbial dissimilarity and pairwise PSF --Fig. 2e,f and Supplementary Table 2
-psf_dis<-read_excel("Submitted data.xlsx", sheet = "PSF-Microdissimilarity-modeling",col_names = TRUE)
+psf_dis<-read_excel("EmpirialData.xlsx", sheet = "PSF-Microdissimilarity-modeling",col_names = TRUE)
 psf_dis <- psf_dis[,c(7:20)]
 myd<-corr.test(psf_dis, use = "complete", method = "pearson", adjust = "none")
 myd1<-print(myd, digits=3)
@@ -70,7 +70,7 @@ library(A3)
 library(readxl)
 
 ##model selection
-data<-read_excel("Submitted data.xlsx", sheet = "PSF-Microdissimilarity-modeling",col_names = TRUE)
+data<-read_excel("EmpirialData.xlsx", sheet = "PSF-Microdissimilarity-modeling",col_names = TRUE)
 data <- data[1:81,4:16]
 data <- data[,-12]#去掉soilrhizobia
 global.model <- lm(Pairfeed_total~Soi_nonrhizo + Root_nonrhizo +  Soilpatho + Rootpatho + Soiloomy + Rootoomy +
@@ -130,7 +130,7 @@ lm.ave$sw
 ####t-test for whether CE and RYT were greater than 0 and 1-supplementary Table 4
 
 ##use plant richness =2 and CE as an example
-data<-read_excel("Submitted data.xlsx", sheet = "PSF-CE-RYT-fig. 4&fig.S4&fig.S8",col_names = TRUE)
+data<-read_excel("EmpirialData.xlsx", sheet = "PSF-CE-RYT-fig. 3bc.4.S4.S8",col_names = TRUE)
 data2 <- data[which(data[,2]==2),]
 test <- t.test(data2$CE, mu = 0)
 # 显示结果
@@ -138,7 +138,7 @@ test
 
 #####AVOVA test for the dispersion and richness effect--Supplementary Table 5
 ###use biomass as an example
-data<-read_excel("Submitted data.xlsx", sheet = "PSF-CE-RYT-fig. 4&fig.S4&fig.S8",col_names = TRUE)
+data<-read_excel("EmpirialData.xlsx", sheet = "PSF-CE-RYT-fig. 3bc.4.S4.S8",col_names = TRUE)
 data$SpecRich<-as.factor(data$SpecRich)
 data$Dispersion<-as.factor(CM0$Dispersion)
 fit <- aov(Biomass.g.m2 ~ SpecRich+Dispersion+Specrich*Dispersion, data=data)
@@ -147,7 +147,7 @@ summary(fit)
 
 #####AVOVA test for the dispersion effect on microbial dissimilarity--Supplemantary Table 6
 ###use soilpatho as an example
-data<-read_excel("Submitted data.xlsx", sheet = "Microbial dissimilarity-fig.2c",col_names = TRUE)
+data<-read_excel("EmpirialData.xlsx", sheet = "Microbial dissimilarity-fig.2bd",col_names = TRUE)
 data$Dispersion<-as.factor(CM0$Dispersion)
 fit <- aov(Soilpatho ~ Dispersion, data=data)
 summary(fit)
@@ -155,7 +155,7 @@ summary(fit)
 
 #####AVOVA test for the interaction between PSF and legume--Supplementary Table 7
 ###use CE as an example
-data<-read_excel("Submitted data.xlsx", sheet = "PSF-CE-RYT-fig. 4&fig.S4&fig.S8",col_names = TRUE)
+data<-read_excel("EmpirialData.xlsx", sheet = "PSF-CE-RYT-fig. 3bc.4.S4.S8",col_names = TRUE)
 data$Legume<-as.factor(data$Legume)
 fit <- lm(CE ~ PSF*Legume, data=data)
 summary(fit)
@@ -170,7 +170,7 @@ library(readxl)
 
 # EMPIRICAL DATA
 # Load the data and identify species richness levels
-TotalData  <- read_excel("Submitted Data.xlsx",col_names = TRUE)
+TotalData  <- read_excel("EmpirialData.xlsx",col_names = TRUE)
 TotalData<-TotalData[,c(2:5)] 
 TotalData6 <- TotalData[which(TotalData[,1]==6),]
 TotalData3 <- TotalData[which(TotalData[,1]==3),]
@@ -248,7 +248,7 @@ UQ4 <- Q4[950]
 
 # THEORETICAL DATA
 # Load the data
-TotalData <- read_excel("TheoreticalData.xlsx",col_names = FALSE)
+TotalData <- read_excel("AllTheoreticalData.xlsx",col_names = TRUE)
 
 # Fit the best copula for 100 samples with the same structure as the empirical data
 FamilySelects <- NA
@@ -350,4 +350,3 @@ LQ3 <- Q3[50]
 UQ3 <- Q3[950]
 LQ4 <- Q4[50]
 UQ4 <- Q4[950]
-
