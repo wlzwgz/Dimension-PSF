@@ -1,2 +1,2 @@
 # Dimension-PSF
-Dilution of specialist pathogens drives feedback and yield advantage in plant mixtures
+Dilution of specialist pathogens drives productivity benefits from diversity in plant mixtures 
